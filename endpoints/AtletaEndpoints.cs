@@ -14,7 +14,7 @@ namespace AtetlaAPI.endpoints
             objetos = [];
         }
 
-        public static void AdicionarAtletaEndpoint(this WebApplication app)
+        public static void GerenciarAtleta(this WebApplication app)
         {
             app.MapGet("/atletas", Get);
             app.MapGet("/atletas/{id}", GetById);

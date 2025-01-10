@@ -19,13 +19,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapGet("/", () => "Olá, mundo filho da puta!");
 
-app.MapGet("/teste", () => "1, 2, 3... testanto essa porra!");
-
-app.MapGet("/teste2", () => "4, 5, 6... testanto essa porra!");
-
-app.AdicionarAtletaEndpoint();
+app.GerenciarAtleta();
 
 
 app.Run();
