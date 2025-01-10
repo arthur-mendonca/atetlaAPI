@@ -1,3 +1,6 @@
+
+using AtetlaAPI.endpoints;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -21,6 +24,8 @@ app.MapGet("/", () => "Olá, mundo filho da puta!");
 app.MapGet("/teste", () => "1, 2, 3... testanto essa porra!");
 
 app.MapGet("/teste2", () => "4, 5, 6... testanto essa porra!");
+
+app.AdicionarAtletaEndpoint();
 
 
 app.Run();
