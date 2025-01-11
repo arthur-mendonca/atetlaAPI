@@ -12,7 +12,18 @@ builder.Services.AddSwaggerGen();
 // configurar injeção de dependência
 builder.Services.AddDbContext<AtletaContext>();
 
+
+builder.Services.AddCors();
+
 var app = builder.Build();
+
+// Configurar CORS
+app.UseCors(builder => builder
+.AllowAnyOrigin()
+.AllowAnyMethod()
+.AllowAnyHeader());
+
+
 
 using (var scope = app.Services.CreateScope())
 {

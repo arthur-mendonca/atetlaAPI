@@ -134,6 +134,7 @@ C:\Users\Arthur\Desktop\atetlaAPI\bin\Debug\net8.0\Microsoft.Extensions.Options.
 C:\Users\Arthur\Desktop\atetlaAPI\bin\Debug\net8.0\Microsoft.Extensions.Primitives.dll
 C:\Users\Arthur\Desktop\atetlaAPI\bin\Debug\net8.0\Microsoft.OpenApi.dll
 C:\Users\Arthur\Desktop\atetlaAPI\bin\Debug\net8.0\Mono.TextTemplating.dll
+C:\Users\Arthur\Desktop\atetlaAPI\bin\Debug\net8.0\SnowflakeGenerator.dll
 C:\Users\Arthur\Desktop\atetlaAPI\bin\Debug\net8.0\SQLitePCLRaw.batteries_v2.dll
 C:\Users\Arthur\Desktop\atetlaAPI\bin\Debug\net8.0\SQLitePCLRaw.core.dll
 C:\Users\Arthur\Desktop\atetlaAPI\bin\Debug\net8.0\SQLitePCLRaw.provider.e_sqlite3.dll
@@ -259,4 +260,3 @@ C:\Users\Arthur\Desktop\atetlaAPI\obj\Debug\net8.0\refint\AtletaApi.dll
 C:\Users\Arthur\Desktop\atetlaAPI\obj\Debug\net8.0\AtletaApi.pdb
 C:\Users\Arthur\Desktop\atetlaAPI\obj\Debug\net8.0\AtletaApi.genruntimeconfig.cache
 C:\Users\Arthur\Desktop\atetlaAPI\obj\Debug\net8.0\ref\AtletaApi.dll
-C:\Users\Arthur\Desktop\atetlaAPI\bin\Debug\net8.0\SnowflakeGenerator.dll

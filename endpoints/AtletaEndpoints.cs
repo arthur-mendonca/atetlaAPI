@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using atetlaAPI.dtos;
 using atetlaAPI.models;
 using AtetlaAPI.models;
+using Microsoft.EntityFrameworkCore;
 
 namespace AtetlaAPI.endpoints
 {
@@ -15,57 +17,58 @@ namespace AtetlaAPI.endpoints
         {
             var grupo = app.MapGroup("/atletas");
 
-            grupo.MapGet("/", Get);
-            grupo.MapGet("/{id}", GetById);
-            grupo.MapPost("/", Post);
-            grupo.MapPut("/{id}", Put);
-            grupo.MapDelete("/{id}", Delete);
+            grupo.MapGet("/", GetAsync);
+            grupo.MapGet("/{id}", GetByIdAsync);
+            grupo.MapPost("/", PostAsync);
+            grupo.MapPut("/{id}", PutAsync);
+            grupo.MapDelete("/{id}", DeleteAsync);
         }
 
-        private static IResult Get(AtletaContext db)
+        private static async Task<IResult> GetAsync(AtletaContext db)
         {
-            var atletas = db.Atletas.ToList();
-            return atletas != null ? TypedResults.Ok(atletas) : TypedResults.NotFound();
+            var atletas = await db.Atletas.ToListAsync();
+            return TypedResults.Ok(atletas.Select(a => new AtletaDTO(a)));
         }
 
-        private static IResult GetById(long id, AtletaContext db)
+        private static async Task<IResult> GetByIdAsync(string id, AtletaContext db)
         {
-            var atleta = db.Atletas.Find(id);
-            return atleta != null ? TypedResults.Ok(atleta) : TypedResults.NotFound();
+            var atleta = await db.Atletas.FindAsync(Convert.ToInt64(id));
+            return atleta != null ? TypedResults.Ok(new AtletaDTO(atleta)) : TypedResults.NotFound();
         }
 
-        private static IResult Post(Atleta atleta, AtletaContext db)
+        private static async Task<IResult> PostAsync(AtletaDTO dto, AtletaContext db)
         {
+            Atleta atleta = dto.GetModel();
             atleta.Id = GeradorId.GetId();
-            db.Atletas.Add(atleta);
-            db.SaveChanges();
-            return TypedResults.Created($"/atletas/{atleta.Id}", atleta);
+
+            await db.Atletas.AddAsync(atleta);
+            await db.SaveChangesAsync();
+
+            return TypedResults.Created($"/atletas/{atleta.Id}", new AtletaDTO(atleta));
         }
 
-        private static IResult Put(long id, Atleta atleta, AtletaContext db)
+        private static async Task<IResult> PutAsync(string id, AtletaDTO dto, AtletaContext db)
         {
-            if (id != atleta.Id) return TypedResults.BadRequest();
+            if (id != dto.Id) return TypedResults.BadRequest();
 
-            var existingAtleta = db.Atletas.Find(id);
+            var existingAtleta = await db.Atletas.FindAsync(Convert.ToInt64(id));
             if (existingAtleta == null) return TypedResults.NotFound();
 
-            existingAtleta.Nome = atleta.Nome;
-            existingAtleta.Altura = atleta.Altura;
-            existingAtleta.Peso = atleta.Peso;
+            dto.PreencherModel(existingAtleta);
 
             db.Atletas.Update(existingAtleta);
-            db.SaveChanges();
+            await db.SaveChangesAsync();
             return TypedResults.NoContent();
         }
 
 
-        private static IResult Delete(long id, AtletaContext db)
+        private static async Task<IResult> DeleteAsync(string id, AtletaContext db)
         {
-            var existingAtleta = db.Atletas.Find(id);
+            var existingAtleta = await db.Atletas.FindAsync(Convert.ToInt64(id));
             if (existingAtleta == null) return TypedResults.NotFound();
 
             db.Atletas.Remove(existingAtleta);
-            db.SaveChanges();
+            await db.SaveChangesAsync();
             return TypedResults.NoContent();
         }
     }
