@@ -1,4 +1,5 @@
 
+using atetlaAPI.models;
 using AtetlaAPI.endpoints;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,7 +9,16 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// configurar injeção de dependência
+builder.Services.AddDbContext<AtletaContext>();
+
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<AtletaContext>();
+    db.Database.EnsureCreated();
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

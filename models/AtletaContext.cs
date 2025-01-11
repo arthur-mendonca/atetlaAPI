@@ -9,7 +9,7 @@ namespace atetlaAPI.models
 {
     public class AtletaContext : DbContext
     {
-        private String caminhoDB;
+        private readonly String caminhoDB;
         public DbSet<Atleta> Atletas { get; set; }
 
         public AtletaContext()

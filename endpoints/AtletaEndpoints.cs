@@ -2,17 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using atetlaAPI.models;
 using AtetlaAPI.models;
 
 namespace AtetlaAPI.endpoints
 {
     public static class AtletaEndpoints
     {
-        private static readonly IList<Atleta> objetos;
-        static AtletaEndpoints()
-        {
-            objetos = [];
-        }
+        private static readonly AtletaContext db = new AtletaContext();
 
         public static void GerenciarAtleta(this WebApplication app)
         {
@@ -23,52 +20,49 @@ namespace AtetlaAPI.endpoints
             app.MapDelete("/atletas/{id}", Delete);
         }
 
-        private static IResult Get()
+        private static IResult Get(AtletaContext db)
         {
-            return objetos != null ? TypedResults.Ok(objetos) : TypedResults.NotFound();
+            var atletas = db.Atletas.ToList();
+            return atletas != null ? TypedResults.Ok(atletas) : TypedResults.NotFound();
         }
 
-        private static IResult GetById(long id)
+        private static IResult GetById(long id, AtletaContext db)
         {
-            var obj = objetos.FirstOrDefault(x => x.Id == id);
-
-            if (obj == null) return TypedResults.NotFound();
-
-            return TypedResults.Ok(obj);
+            var atleta = db.Atletas.Find(id);
+            return atleta != null ? TypedResults.Ok(atleta) : TypedResults.NotFound();
         }
 
-        private static IResult Post(Atleta atleta)
+        private static IResult Post(Atleta atleta, AtletaContext db)
         {
-            atleta.Id = (objetos.MaxBy(x => x.Id) ?? new Atleta()).Id + 1;
-            objetos.Add(atleta);
-
-            return TypedResults.Created($"atletas/{atleta.Id}", atleta);
+            db.Atletas.Add(atleta);
+            db.SaveChanges();
+            return TypedResults.Created($"/atletas/{atleta.Id}", atleta);
         }
 
-        private static IResult Put(long id, Atleta atleta)
+        private static IResult Put(long id, Atleta atleta, AtletaContext db)
         {
             if (id != atleta.Id) return TypedResults.BadRequest();
 
-            var obj = objetos.FirstOrDefault(x => x.Id == id);
+            var existingAtleta = db.Atletas.Find(id);
+            if (existingAtleta == null) return TypedResults.NotFound();
 
-            if (obj == null) return TypedResults.NotFound();
+            existingAtleta.Nome = atleta.Nome;
+            existingAtleta.Altura = atleta.Altura;
+            existingAtleta.Peso = atleta.Peso;
 
-            obj.Nome = atleta.Nome;
-            obj.Altura = atleta.Altura;
-            obj.Peso = atleta.Peso;
-
+            db.Atletas.Update(existingAtleta);
+            db.SaveChanges();
             return TypedResults.NoContent();
         }
 
 
-        private static IResult Delete(long id)
+        private static IResult Delete(long id, AtletaContext db)
         {
-            var obj = objetos.FirstOrDefault(x => x.Id == id);
+            var existingAtleta = db.Atletas.Find(id);
+            if (existingAtleta == null) return TypedResults.NotFound();
 
-            if (obj == null) return TypedResults.NotFound();
-
-            objetos.Remove(obj);
-
+            db.Atletas.Remove(existingAtleta);
+            db.SaveChanges();
             return TypedResults.NoContent();
         }
     }
