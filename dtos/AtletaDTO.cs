@@ -32,7 +32,8 @@ namespace atetlaAPI.dtos
 
         public void PreencherModel(Atleta obj)
         {
-            // obj.Id = Convert.ToInt64(this.Id);
+            long.TryParse(this.Id, out long id);
+            obj.Id = id;
             obj.Nome = this.Nome;
             obj.Altura = this.Altura;
             obj.Peso = this.Peso;
