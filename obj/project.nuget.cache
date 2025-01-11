@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "k512Ag63MVWSSH9zXmqVTG7aS0uxgzjw3rmoR5V30u3nozo10+93BxBbdVEV8MlhtRW8JCpkIKUx/w1f7rvwng==",
+  "dgSpecHash": "CrFGYEYDR7qZL+1U+OE6p3/Wa7sUJkZIvXhEhKmP1/K4MVumy24L1pCDFGJQNQAwCQZuxKFwSdX9bMlbvJ6pvw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Arthur\\Desktop\\atetlaAPI\\AtletaApi.csproj",
   "expectedPackageFiles": [
@@ -36,6 +36,7 @@
     "C:\\Users\\Arthur\\.nuget\\packages\\microsoft.extensions.primitives\\9.0.0\\microsoft.extensions.primitives.9.0.0.nupkg.sha512",
     "C:\\Users\\Arthur\\.nuget\\packages\\microsoft.openapi\\1.4.3\\microsoft.openapi.1.4.3.nupkg.sha512",
     "C:\\Users\\Arthur\\.nuget\\packages\\mono.texttemplating\\3.0.0\\mono.texttemplating.3.0.0.nupkg.sha512",
+    "C:\\Users\\Arthur\\.nuget\\packages\\snowflakegenerator\\2.0.0\\snowflakegenerator.2.0.0.nupkg.sha512",
     "C:\\Users\\Arthur\\.nuget\\packages\\sqlitepclraw.bundle_e_sqlite3\\2.1.10\\sqlitepclraw.bundle_e_sqlite3.2.1.10.nupkg.sha512",
     "C:\\Users\\Arthur\\.nuget\\packages\\sqlitepclraw.core\\2.1.10\\sqlitepclraw.core.2.1.10.nupkg.sha512",
     "C:\\Users\\Arthur\\.nuget\\packages\\sqlitepclraw.lib.e_sqlite3\\2.1.10\\sqlitepclraw.lib.e_sqlite3.2.1.10.nupkg.sha512",
