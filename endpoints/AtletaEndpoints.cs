@@ -13,11 +13,13 @@ namespace AtetlaAPI.endpoints
 
         public static void GerenciarAtleta(this WebApplication app)
         {
-            app.MapGet("/atletas", Get);
-            app.MapGet("/atletas/{id}", GetById);
-            app.MapPost("/atletas", Post);
-            app.MapPut("/atletas/{id}", Put);
-            app.MapDelete("/atletas/{id}", Delete);
+            var grupo = app.MapGroup("/atletas");
+
+            grupo.MapGet("/", Get);
+            grupo.MapGet("/{id}", GetById);
+            grupo.MapPost("/", Post);
+            grupo.MapPut("/{id}", Put);
+            grupo.MapDelete("/{id}", Delete);
         }
 
         private static IResult Get(AtletaContext db)
