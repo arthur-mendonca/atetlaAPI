@@ -34,6 +34,7 @@ namespace AtetlaAPI.endpoints
 
         private static IResult Post(Atleta atleta, AtletaContext db)
         {
+            atleta.Id = GeradorId.GetId();
             db.Atletas.Add(atleta);
             db.SaveChanges();
             return TypedResults.Created($"/atletas/{atleta.Id}", atleta);

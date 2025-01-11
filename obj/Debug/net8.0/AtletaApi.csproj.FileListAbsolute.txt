@@ -259,3 +259,4 @@ C:\Users\Arthur\Desktop\atetlaAPI\obj\Debug\net8.0\refint\AtletaApi.dll
 C:\Users\Arthur\Desktop\atetlaAPI\obj\Debug\net8.0\AtletaApi.pdb
 C:\Users\Arthur\Desktop\atetlaAPI\obj\Debug\net8.0\AtletaApi.genruntimeconfig.cache
 C:\Users\Arthur\Desktop\atetlaAPI\obj\Debug\net8.0\ref\AtletaApi.dll
+C:\Users\Arthur\Desktop\atetlaAPI\bin\Debug\net8.0\SnowflakeGenerator.dll
