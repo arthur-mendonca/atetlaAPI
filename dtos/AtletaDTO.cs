@@ -9,6 +9,8 @@ namespace atetlaAPI.dtos
     public class AtletaDTO
     {
 
+        public AtletaDTO() { }
+
         public AtletaDTO(Atleta obj)
         {
             Id = obj.Id.ToString();
@@ -30,7 +32,7 @@ namespace atetlaAPI.dtos
 
         public void PreencherModel(Atleta obj)
         {
-            obj.Id = Convert.ToInt64(this.Id);
+            // obj.Id = Convert.ToInt64(this.Id);
             obj.Nome = this.Nome;
             obj.Altura = this.Altura;
             obj.Peso = this.Peso;
